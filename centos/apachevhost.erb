@@ -1,0 +1,31 @@
+<VirtualHost *:80>
+    Servername <%= servername %>
+
+    DocumentRoot <%= homedir %>/httpdocs
+    DirectoryIndex index.php
+
+    Alias /fcgi-bin/ <%= homedir %>/fcgi-bin/
+
+    <Location /fcgi-bin> 
+        SetHandler fastcgi-script 
+        Options +ExecCGI 
+    </Location> 
+
+    AddHandler php-cgi-script .php
+    Action php-cgi-script /fcgi-bin/php-wrapper
+
+    SuexecUserGroup <%= user %> <%= user %>
+
+    <Directory "<%= homedir %>">
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+    <Directory "<%= homedir %>/httpdocs">
+        Options Indexes SymLinksIfOwnerMatch
+        AllowOverride All
+    </Directory>
+
+    CustomLog   <%= homedir %>/logs/access_log combined
+    ErrorLog    <%= homedir %>/logs/error_log 
+</VirtualHost>

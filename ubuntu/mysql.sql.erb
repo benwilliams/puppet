@@ -1,0 +1,6 @@
+<%
+dbname = servername.split(".").first << "db"
+%>
+
+CREATE DATABASE <%= dbname %> ;
+GRANT ALL ON <%= dbname %>.* TO <%= dbname %>;

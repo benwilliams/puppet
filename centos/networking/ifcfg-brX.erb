@@ -1,0 +1,10 @@
+DEVICE=br<%=vlan%>
+ONBOOT=yes
+TYPE=Bridge
+DELAY=0
+<% if not ip.empty? -%>
+IPADDR=<%=ip%>
+NETMASK=<%=netmask%>
+<% end -%>
+USERCTL=no
+NM_CONTROLLED=no

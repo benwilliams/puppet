@@ -1,0 +1,6 @@
+DEVICE=bond0
+BOOTPROTO=none
+ONBOOT=yes
+BONDING_OPTS="miimon=100 mode=4"
+USERCTL=no
+NM_CONTROLLED=no
