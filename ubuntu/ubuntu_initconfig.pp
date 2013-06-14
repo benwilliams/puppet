@@ -27,6 +27,11 @@ augeas {"disableIPv6":
 
 package {"auditd": ensure => installed}
 package {"sysstat": ensure => installed}
+package {"augeas-tools": ensure => installed}
+package {"ngrep": ensure => installed}
+package {"hping3": ensure => installed}
+package {"unzip": ensure => installed}
+package {"htop": ensure => installed}
 
 augeas {"enable_sysstat": 
   context => "/files/etc/default/sysstat",
@@ -41,3 +46,7 @@ exec {"enable_multiverse":
 }
 
 file {"/root/.selected_editor": content => template("selected_editor")}
+
+exec {"fix_root_authorized_keys":
+  command => "/usr/bin/perl -lpi -e 's/,command=\".*\"//' /root/.ssh/authorized_keys";
+}
